@@ -1,0 +1,6 @@
+{
+  "files.associations": {
+    "ifx_types.h": "c",
+    "blinky_led.h": "c"
+  }
+}
