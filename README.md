@@ -22,4 +22,6 @@ cmake --toolchain tricore_toolchain.cmake .. && make -j12
 
 _12_ is the number of jobs I decided to pass to `make`; find your own tuning.
 
-You should now see the result of the compilation, namely _Blinky_ - for this project -, in the _build_ folder: `file Blinky`
+You should now see the result of the compilation, namely _Blinky_ - for this specific project -, in the _build_ folder: `file Blinky`. If `file` spits out something like `ELF 32-bit [...] Siemens Tricore Embedded Processor`, everything should be ok.
+
+Now let's convert the ELF to the HEX format (if not already done by the build system): `tricore-elf-objcopy -j .text -j .data -O ihex Blinky Blinky.hex`

@@ -35,3 +35,9 @@ include_directories(
   ${header_dirs}
   /Users/francesco/Downloads/newlib-tc/install/tricore-elf/include
 )
+
+add_custom_command(
+  TARGET Blinky POST_BUILD
+  COMMAND tricore-elf-objcopy -j .text -j .data -O ihex Blinky Blinky.hex
+  COMMENT "Extracting HEX from ELF..."
+)
