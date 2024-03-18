@@ -1,3 +1,9 @@
 [submodule "build-toolchain/tricore-gcc"]
 	path = build-toolchain/tricore-gcc
 	url = https://github.com/mc-cat-tty/tricore-gcc
+[submodule "build-toolchain/tricore-binutils-gdb"]
+	path = build-toolchain/tricore-binutils-gdb
+	url = https://github.com/EEESlab/tricore-binutils-gdb
+[submodule "build-toolchain/tricore-newlib-cygwin"]
+	path = build-toolchain/tricore-newlib-cygwin
+	url = https://github.com/EEESlab/tricore-newlib-cygwin
