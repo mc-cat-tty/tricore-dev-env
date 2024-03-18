@@ -18,13 +18,17 @@ list(REMOVE_DUPLICATES header_dirs)
 
 add_compile_definitions(__HIGHTEC__)
 add_compile_options(
+  -fmessage-length=0
+  -fno-common
+  -fstrict-volatile-bitfields
+  -fdata-sections
+  -ffunction-sections
   -mcpu=tc39xx
-  -nocrt0
-  -Wl,--gc-sections
 )
 add_link_options(
-  -mcpu=tc39xx
   -nocrt0
+  -Wl,--gc-sections
+  -mcpu=tc39xx
   -T../Lcf_Gnuc_Tricore_Tc.lsl
 )
 
@@ -38,6 +42,6 @@ include_directories(
 
 add_custom_command(
   TARGET Blinky POST_BUILD
-  COMMAND tricore-elf-objcopy -j .text -j .data -O ihex Blinky Blinky.hex
+  COMMAND tricore-elf-objcopy -O ihex Blinky Blinky.hex
   COMMENT "Extracting HEX from ELF..."
 )
