@@ -1,0 +1,3 @@
+[submodule "build-toolchain/tricore-gcc"]
+	path = build-toolchain/tricore-gcc
+	url = https://github.com/mc-cat-tty/tricore-gcc
