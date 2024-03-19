@@ -101,6 +101,8 @@ cd $NEWLIB_BUILD_PATH
 $NEWLIB_SRC_PATH/configure \
   --target=tricore-elf \
   --host=${HOST} \
-  --prefix=${INSTALL_PATH}
+  --prefix=${INSTALL_PATH} \
+  --with-as=${INSTALL_PATH}/bin/tricore-elf-as \
+  --with-ld=${INSTALL_PATH}/bin/tricore-elf-ld
 make -j${JOBS} all
 make install
