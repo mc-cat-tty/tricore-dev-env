@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function failure_handler() { EV=$?; echo "Installation not completed. Error $EV on line $1" >&2; exit $EV; }
+function failure_handler() { EV=$?; echo "Installation not completed. Error $EV on line $1"; exit $EV; }
 trap "failure_handler $LINENO" ERR
 
 # Working directory
