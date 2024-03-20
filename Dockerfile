@@ -1,5 +1,8 @@
 FROM ubuntu:22.04
 
+LABEL org.opencontainers.image.authors="Francesco Mecatti"
+LABEL version="1.0"
+
 COPY . /home/dev-env
 WORKDIR /home/dev-env
 
