@@ -1,3 +1,5 @@
 examples/
 flash-tools/
-README.md
+project-template/
+venv/
+__pycache__/

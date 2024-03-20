@@ -1,3 +1,5 @@
 .vscode
 .ads
 .exportedSettings
+venv
+__pycache__
