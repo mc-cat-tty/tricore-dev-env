@@ -7,7 +7,7 @@ COPY . /home/dev-env
 WORKDIR /home/dev-env
 
 # Setup
-ENV DEPENDENCIES "texinfo build-essential git flex bison vim curl bc"
+ENV DEPENDENCIES "texinfo cmake build-essential git flex bison vim curl bc"
 RUN set -ex && apt update && apt install --no-install-recommends -y ${DEPENDENCIES}
 
 # Install and cleanup

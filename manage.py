@@ -51,7 +51,6 @@ def build(client: DockerClient, args: Any) -> None:
     remove=True,
     mounts=[src_folder],
     entrypoint = '/bin/bash -c',
-    # command='/bin/bash -c "apt install -y cmake "'
     command='"apt install -y cmake && cd /home/src/build && cmake --toolchain tricore_toolchain.cmake .. && make -j$(nproc)"'
   )
   print(out)
