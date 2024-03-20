@@ -1,10 +1,10 @@
-import docker
+import docker, argparse, os, time
 from docker.errors import DockerException
 from docker import DockerClient
+from docker.types import Mount
 from operator import attrgetter
 from itertools import chain
 from typing import Any, Callable
-import argparse
 
 IMAGE: str = 'francescomecatti/tricore-dev-env:1.0'
 
@@ -27,7 +27,7 @@ def container_startup(f) -> Callable:
       print(f'Downloading container {IMAGE}...')
       client.images.pull(IMAGE)
       print('Done!')
-      
+    
     f(client, *args, **kwargs)
   
   return inner
@@ -35,8 +35,27 @@ def container_startup(f) -> Callable:
 
 @container_startup
 def build(client: DockerClient, args: Any) -> None:
-  out = client.containers.run(IMAGE, 'ls /', remove=True)
+  abs_path = os.path.join(os.getcwd(), args.folder)
+  if not os.path.isfile(os.path.join(abs_path, "CMakeLists.txt")):
+    raise FileNotFoundError("Missing CMake file.")
+
+  build_path = os.path.join(abs_path, "build")
+  if not os.path.isdir(build_path):
+    os.makedirs(build_path)
+
+  src_folder = Mount("/home/src", abs_path, type='bind')
+
+  print(f"Building source from {args.folder} ...")
+  out = client.containers.run(
+    IMAGE,
+    remove=True,
+    mounts=[src_folder],
+    entrypoint = '/bin/bash -c',
+    # command='/bin/bash -c "apt install -y cmake "'
+    command='"apt install -y cmake && cd /home/src/build && cmake --toolchain tricore_toolchain.cmake .. && make -j$(nproc)"'
+  )
   print(out)
+  print("Done!")
 
 
 @container_startup
@@ -49,7 +68,7 @@ if __name__ == '__main__':
   subparsers = parser.add_subparsers(title='action', required=True)
 
   build_subparser = subparsers.add_parser('build', help='Build a project for TriCore architecture. A CMake file is required.')
-  build_subparser.add_argument('folder', metavar='BASEDIR', type=str)
+  build_subparser.add_argument('folder', metavar='SRCDIR', type=str)
   build_subparser.add_argument('-v', '--verbose', help='Enable container log on the terminal.', action='count', default=0, required=False)
   build_subparser.set_defaults(handler=build)
 

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.27)
+cmake_minimum_required(VERSION 3.22)
 project(Blinky LANGUAGES C)
 
 # List all files and subdirectories in Libraries and Configurations folders
