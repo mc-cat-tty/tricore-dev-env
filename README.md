@@ -132,7 +132,7 @@ The _CMakeLists.txt_ and _tricore\_toolchain.cmake_ do the trick. Noteworthy dir
  - `set(CMAKE_SYSROOT /tricore-build-tools/tricore-elf)` sets the compiler _sysroot_, namely the path where libraries (both heaers, under _/include_ and static/dynamic libraries, under _/lib_) like `libc`, `libm`, `crt` (C RunTime), etc. are searched. Read more about it on the [GCC manual](https://gcc.gnu.org/onlinedocs/gcc/Directory-Options.html).
  - `project(... LANGUAGES C)` disables C++ language. Enabling C++ raises some errors at the moment.
  - `add_compile_definitions(__HIGHTEC__)` defines a macro required by iLLD libraires.
- - `add_compiler_options(...) and add_link_options(...)` are described [here](https://free-entry-toolchain.hightec-rt.com/aurix_dev_studio_with_hightec_gcc.pdf). `-mcpu=XXXX` must be coheret with the CPU of your board. Run `tricore-elf-gcc --target-help` to get the complete list of supported CPUs and architectures.
+ - `add_compiler_options(...) and add_link_options(...)` are described [here](https://free-entry-toolchain.hightec-rt.com/aurix_dev_studio_with_hightec_gcc.pdf). `-mcpu=XXXX` must be coherent with the CPU of your board. Run `tricore-elf-gcc --target-help` to get the complete list of supported CPUs and architectures.
  - `include_directories(... /tricore-build-tools/tricore-elf/include)` includes the header files of _newlib_. 
 
 Note that `set(CMAKE_SYSROOT /tricore-build-tools/tricore-elf)` and `include_directories(... /tricore-build-tools/tricore-elf/include)` are probably useless in the context of an installation path for GCC, binutils and newlib; but, they are necessary if the installation paths of these tools differ. 
