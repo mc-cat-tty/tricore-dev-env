@@ -90,7 +90,7 @@ Please, note that the linker script _.lsl_ file is not the default one provided 
 
 ### How to build and example?
 #### Containerized Installation
-Make sure that the dependencies [here](#the-easy-way) are installed - and running, in the case of the Docker Engine - on your system.
+Make sure that the dependencies described [here](#the-easy-way) are installed - and running, in the case of the Docker Engine - on your system.
 
 Pick and example, for instance _Blinky_LED\_1\_KIT\_TC397\_TFT_:
 ```bash
