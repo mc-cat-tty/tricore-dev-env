@@ -135,7 +135,7 @@ The _CMakeLists.txt_ and _tricore\_toolchain.cmake_ do the trick. Noteworthy dir
  - `add_compiler_options(...) and add_link_options(...)` are described [here](https://free-entry-toolchain.hightec-rt.com/aurix_dev_studio_with_hightec_gcc.pdf). `-mcpu=XXXX` must be coherent with the CPU of your board. Run `tricore-elf-gcc --target-help` to get the complete list of supported CPUs and architectures.
  - `include_directories(... /tricore-build-tools/tricore-elf/include)` includes the header files of _newlib_. 
 
-Note that `set(CMAKE_SYSROOT /tricore-build-tools/tricore-elf)` and `include_directories(... /tricore-build-tools/tricore-elf/include)` are probably useless in the context of an installation path for GCC, binutils and newlib; but, they are necessary if the installation paths of these tools differ. 
+Note that `set(CMAKE_SYSROOT /tricore-build-tools/tricore-elf)` and `include_directories(... /tricore-build-tools/tricore-elf/include)` are probably useless in the context of a single installation path for GCC, binutils and newlib; but, they are necessary if the installation paths of these tools differ. 
 In particular, they should point to the install directory of _newlib_.
 
 ## Create a new project
