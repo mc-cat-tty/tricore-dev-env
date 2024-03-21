@@ -2,7 +2,8 @@
 A utility script for interacting with containerized TriCore development environment.
 
 ## Usage
-### Build
+### Build
+
 Make sure to be in the top-level directory of a project (i.e. a folder with some source code, a CMakeLists.txt and the _tricore\_toolchain.cmake_ toolchain file provided in _project-template_ folder).
 
 Then, run this to build the project:
