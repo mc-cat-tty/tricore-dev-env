@@ -62,7 +62,7 @@ First of all, clone this repository:
 git clone --recurse-submodules --shallow-submodules https://github.com/mc-cat-tty/tricore-dev-env
 ```
 
-Make sure that a Docker Engine is installed on your system and run:
+Make sure that a Docker Engine is installed and running on your system:
 ```bash
 cd tricore-dev-env
 docker build -t CONTAINER_TAG .
@@ -70,7 +70,7 @@ docker build -t CONTAINER_TAG .
 
 The `build` subcommand requires a _Dockerfile_ to be present in the build directory. This file instructs the docker client about the building steps.
 
-You might want to avoid the copy of some source files during the build process - for instance, they are not ready to be embedded into the container; _.dockerignore_ serves exactly this purpose.
+You might want to avoid the copy of some source files during the build process - for instance, because they are not ready to be embedded into the container; _.dockerignore_ serves exactly this purpose.
 
 Both the aforementioned files are located in the top-directory of this project, so that you can build up your own on top of them.
 
@@ -146,4 +146,3 @@ Some useful resources are:
  - [Linker scripts](https://nextcloud.hightec-rt.com/index.php/s/BG72PCMP7jrEcki)
  - [CMakeLists.txt template](project-template/CMakeLists.txt)
  - [tricore_toolchain.cmake](project-template/tricore_toolchain.cmake)
- 
