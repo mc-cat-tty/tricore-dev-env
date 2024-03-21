@@ -128,7 +128,7 @@ Now let's convert the ELF to the HEX format (already done by the build system, i
 
 ### Internals
 The _CMakeLists.txt_ and _tricore\_toolchain.cmake_ do the trick. Noteworthy directives are:
- - `set(CMAKE_C_COMPILER tricore-elf-gcc)` chooses the right cross-compiler. Omitting this leads to the use of the system's compiler (host == build == target), which is not - almost for sure - a compier that supports TriCore architecture as a target.
+ - `set(CMAKE_C_COMPILER tricore-elf-gcc)` chooses the right cross-compiler. Omitting this leads to the use of the system's compiler, which is not - almost for sure - a compier that supports TriCore architecture as a target.
  - `set(CMAKE_SYSROOT /tricore-build-tools/tricore-elf)` sets the compiler _sysroot_, namely the path where libraries (both heaers, under _/include_ and static/dynamic libraries, under _/lib_) like `libc`, `libm`, `crt` (C RunTime), etc. are searched. Read more about it on the [GCC manual](https://gcc.gnu.org/onlinedocs/gcc/Directory-Options.html).
  - `project(... LANGUAGES C)` disables C++ language. Enabling C++ raises some errors at the moment.
  - `add_compile_definitions(__HIGHTEC__)` defines a macro required by iLLD libraires.
