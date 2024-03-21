@@ -137,3 +137,13 @@ The _CMakeLists.txt_ and _tricore\_toolchain.cmake_ do the trick. Noteworthy dir
 
 Note that `set(CMAKE_SYSROOT /tricore-build-tools/tricore-elf)` and `include_directories(... /tricore-build-tools/tricore-elf/include)` are probably useless in the context of an installation path for GCC, binutils and newlib; but, they are necessary if the installation paths of these tools differ. 
 In particular, they should point to the install directory of _newlib_.
+
+## Create a new project
+At the moment, projects have to be created by hand.
+
+Some useful resources are:
+ - [iLLD drivers](https://www.infineon.com/cms/en/tools/aurix-embedded-sw/aurix-illd-drivers/)
+ - [Linker scripts](https://nextcloud.hightec-rt.com/index.php/s/BG72PCMP7jrEcki)
+ - [CMakeLists.txt template](project-template/CMakeLists.txt)
+ - [tricore_toolchain.cmake](project-template/tricore_toolchain.cmake)
+ 
