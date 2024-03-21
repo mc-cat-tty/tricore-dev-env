@@ -1,1 +1,0 @@
-../../project-template/manage.py

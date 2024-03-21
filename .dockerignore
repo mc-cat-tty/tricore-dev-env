@@ -1,5 +1,6 @@
 examples/
 flash-tools/
 project-template/
+tricore-cli/
 venv/
 __pycache__/

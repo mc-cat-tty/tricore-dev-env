@@ -51,7 +51,7 @@ def build(client: DockerClient, args: Any) -> None:
     remove=True,
     mounts=[src_folder],
     entrypoint = '/bin/bash -c',
-    command='"apt install -y cmake && cd /home/src/build && cmake --toolchain tricore_toolchain.cmake .. && make -j$(nproc)"'
+    command='"cd /home/src/build && cmake --toolchain tricore_toolchain.cmake .. && make -j$(nproc)"'
   )
   print(out)
   print("Done!")
@@ -62,7 +62,7 @@ def flash(client: DockerClient, args: Any) -> None:
   raise NotImplementedError("Feature not implemented yet")
 
 
-if __name__ == '__main__':
+def main() -> None:
   parser = argparse.ArgumentParser(description='Utility script for managing the build of TriCore applications with ease.')
   subparsers = parser.add_subparsers(title='action', required=True)
 
@@ -78,3 +78,6 @@ if __name__ == '__main__':
 
   args = parser.parse_args()
   args.handler(args)
+
+if __name__ == '__main__':
+  main()
