@@ -37,7 +37,7 @@ add_executable(Blinky ${source_dirs})
 
 include_directories(
   ${header_dirs}
-  /Users/francesco/Downloads/newlib-tc/install/tricore-elf/include
+  /tricore-build-tools/tricore-elf/include
 )
 
 add_custom_command(
