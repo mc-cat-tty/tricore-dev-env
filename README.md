@@ -111,7 +111,7 @@ export PATH=/your/path/binutils-tc/install/bin/:$PATH
 export PATH=your/path/gcc-tc/install/bin/:$PATH
 ```
 
-Be aware that your path may change. It depends on the configuration of your environment.
+Be aware that your path may be different. It depends on the configuration of your environment.
 
 ```bash
 cd examples/Blinky_LED_1_KIT_TC397_TFT
