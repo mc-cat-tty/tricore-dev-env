@@ -5,6 +5,7 @@ from docker.types import Mount
 from operator import attrgetter
 from itertools import chain
 from typing import Any, Callable
+from arglists import *
 
 IMAGE: str = 'francescomecatti/tricore-dev-env:1.0'
 
@@ -34,10 +35,11 @@ def container_startup(f) -> Callable:
 
 
 @container_startup
-def build(client: DockerClient, args: Any) -> None:
-  abs_path = os.path.join(os.getcwd(), args.folder)
+def build(client: DockerClient, args: BuildHanderArgs) -> None:
+  abs_path = args.folder if os.path.isabs(args.folder) else os.path.join(os.getcwd(), args.folder)
   if not os.path.isfile(os.path.join(abs_path, "CMakeLists.txt")):
-    raise FileNotFoundError("Missing CMake file.")
+    print(f"Missing CMakeLists.txt in {abs_path}")
+    exit(2)
 
   build_path = os.path.join(abs_path, "build")
   if not os.path.isdir(build_path):
@@ -58,22 +60,52 @@ def build(client: DockerClient, args: Any) -> None:
 
 
 @container_startup
-def flash(client: DockerClient, args: Any) -> None:
+def flash(client: DockerClient, args: FlashHandlerArgs) -> None:
   raise NotImplementedError("Feature not implemented yet")
 
 
 def main() -> None:
-  parser = argparse.ArgumentParser(description='Utility script for managing the build of TriCore applications with ease.')
+  parser = argparse.ArgumentParser(
+    description='Utility script for managing the build of TriCore applications with ease.'
+  )
   subparsers = parser.add_subparsers(title='action', required=True)
 
-  build_subparser = subparsers.add_parser('build', help='Build a project for TriCore architecture. A CMake file is required.')
-  build_subparser.add_argument('folder', metavar='SRCDIR', type=str)
-  build_subparser.add_argument('-v', '--verbose', help='Enable container log on the terminal.', action='count', default=0, required=False)
+  build_subparser = subparsers.add_parser(
+    'build',
+    help='Build projectes for TriCore architecture. A CMake file is required inside SRCDIR directory.'
+  )
+  build_subparser.add_argument(
+    'folder',
+    metavar='SRCDIR',
+    type=str
+  )
+  build_subparser.add_argument(
+    '-v', '--verbose',
+    dest='verbosity_level',
+    help='Enable container log on the terminal.',
+    action='count',
+    default=0,
+    required=False
+  )
   build_subparser.set_defaults(handler=build)
 
-  flash_subparser = subparsers.add_parser('flash', help='Flash a .hex binary file to a board.')
-  flash_subparser.add_argument('filename', metavar='FILENAME', type=str)
-  flash_subparser.add_argument('-v', '--verbose', help='Enable container log on the terminal.', action='count', default=0, required=False)
+  flash_subparser = subparsers.add_parser(
+    'flash',
+    help='Flash Intel-hex binaries on Aurix boards.'
+  )
+  flash_subparser.add_argument(
+    'filename',
+    metavar='FILENAME',
+    type=str
+  )
+  flash_subparser.add_argument(
+    '-v', '--verbose',
+    dest='verbosity_level',
+    help='Enable container log on the terminal.',
+    action='count',
+    default=0,
+    required=False
+  )
   flash_subparser.set_defaults(handler=flash)
 
   args = parser.parse_args()
