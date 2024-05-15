@@ -1,11 +1,15 @@
-import docker, argparse, os, time
+import argparse, os
+from typing import Callable
+from arglists import *
+
+import docker
 from docker.errors import DockerException
 from docker import DockerClient
 from docker.types import Mount
 from operator import attrgetter
 from itertools import chain
-from typing import Any, Callable
-from arglists import *
+
+import time
 
 IMAGE: str = 'francescomecatti/tricore-dev-env:1.0'
 
@@ -37,31 +41,42 @@ def container_startup(f) -> Callable:
 @container_startup
 def build(client: DockerClient, args: BuildHanderArgs) -> None:
   abs_path = args.folder if os.path.isabs(args.folder) else os.path.join(os.getcwd(), args.folder)
-  if not os.path.isfile(os.path.join(abs_path, "CMakeLists.txt")):
-    print(f"Missing CMakeLists.txt in {abs_path}")
+  
+  if not os.path.isfile(os.path.join(abs_path, 'CMakeLists.txt')):
+    print(f'Missing CMakeLists.txt in {abs_path}')
     exit(2)
+  
+  if not os.path.isfile(os.path.join(abs_path, 'tricore_toolchain.cmake')):
+    print(f'Missing tricore_toolchain.cmake in {abs_path}')
+    exit(3)
 
-  build_path = os.path.join(abs_path, "build")
+  build_path = os.path.join(abs_path, 'build')
   if not os.path.isdir(build_path):
     os.makedirs(build_path)
 
-  src_folder = Mount("/home/src", abs_path, type='bind')
+  SRC_DIR: str = '/home/src'
+  CPUS: int = int(os.cpu_count()*1.5) if os.cpu_count() else 2
+  src_folder = Mount(SRC_DIR, abs_path, type='bind')
 
-  print(f"Building source from {args.folder} ...")
-  out = client.containers.run(
+  print(f'Building source from {args.folder}')
+
+  c = client.containers.run(
     IMAGE,
-    remove=True,
+    detach=True,
+    stdin_open=True,  # To keep the container alive
     mounts=[src_folder],
-    entrypoint = '/bin/bash -c',
-    command='"cd /home/src/build && cmake --toolchain tricore_toolchain.cmake .. && make -j$(nproc)"'
+    working_dir=SRC_DIR
   )
-  print(out)
-  print("Done!")
+  c.exec_run('cmake -B build --toolchain tricore_toolchain.cmake')
+  print(f"Building with {CPUS} jobs...")
+  c.exec_run(f'cmake --build build --parallel {CPUS}')
+  c.stop(timeout=1)
+  c.remove()
 
 
 @container_startup
 def flash(client: DockerClient, args: FlashHandlerArgs) -> None:
-  raise NotImplementedError("Feature not implemented yet")
+  raise NotImplementedError('Feature not implemented yet')
 
 
 def main() -> None:
