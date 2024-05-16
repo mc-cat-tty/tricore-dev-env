@@ -1,32 +1,7 @@
 import argparse, os
-from typing import Callable
 from args import *
 from containers import *
 from utils import *
-
-def container_startup(f) -> Callable:
-  def inner(*args, **kwargs):
-    try:
-      client = docker.from_env()
-    except DockerException:
-      print('Docker engine not found. Make sure to have a running Docker engine!')
-      exit(ExitCode.ENGINE_NOT_STARTED)
-
-    installed_images = chain.from_iterable(
-      map(
-        attrgetter('tags'),
-        client.images.list()
-      )
-    )
-
-    if IMAGE not in installed_images:
-      print(f'Downloading container {IMAGE}...')
-      client.images.pull(IMAGE)
-      print('Done!')
-    
-    f(client, *args, **kwargs)
-  
-  return inner
 
 
 def build(args: BuildHanderArgs) -> None:
@@ -60,8 +35,7 @@ def build(args: BuildHanderArgs) -> None:
     print_stream(res)
     
 
-@container_startup
-def flash(client: DockerClient, args: FlashHandlerArgs) -> None:
+def flash(args: FlashHandlerArgs) -> None:
   raise NotImplementedError('Feature not implemented yet')
 
 

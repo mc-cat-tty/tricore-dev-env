@@ -1,11 +1,12 @@
 import docker
+import docker.errors
+from utils import *
 from docker.models.containers import Container
 from docker.errors import DockerException
 from docker import DockerClient
 from docker.types import Mount
-from operator import attrgetter
-from itertools import chain
 
+IMAGE: str = 'francescomecatti/tricore-dev-env:1.0'
 
 class DisposableContainer:
   def __init__(self, image_name: str):
@@ -14,28 +15,38 @@ class DisposableContainer:
     self._container: Container | None = None
   
   def __enter__(self):
-    self._client = docker.from_env()
-    # Manage exceptions
+    try:
+      self._client = docker.from_env()
+    except DockerException:
+      print('Docker engine not found. Make sure to have a running Docker engine!')
+      exit(ExitCode.ENGINE_NOT_STARTED)
+
     return self._container
   
   def __exit__(self, type, value, tb):
-    if not self._container: return
+    assert self._container, "Invalid container"
     self._container.stop(timeout=1)
     self._container.remove()
 
 
 class BuildDisposableContainer(DisposableContainer):
   SRC_DIR: str = '/home/src'
-  IMAGE: str = 'francescomecatti/tricore-dev-env:1.0'
 
   def __init__(self, folder: str):
-    super().__init__(self.IMAGE)
+    super().__init__(IMAGE)
     self.__folder = folder
   
   def __enter__(self):
     super().__enter__()
-    if not self._client: return
+    assert self._client, "Invalid client"
 
+    try:
+      self._client.images.get(IMAGE)
+    except docker.errors.ImageNotFound:
+      print(f'Downloading container {IMAGE}')
+      print_pull_progress(self._client.api.pull(IMAGE, stream=True, decode=True))
+      print('Done!\n')
+    
     src_folder = Mount(self.SRC_DIR, self.__folder, type='bind')
     self._container = self._client.containers.run(
       self._image_name,
