@@ -1,6 +1,6 @@
 [project]
 name = "tricore-cli"
-version = "1.4"
+version = "1.5"
 authors = [{ name = "Francesco Mecatti" }]
 description = "A utility script for interacting with containerized TriCore development environment"
 readme = "README.md"

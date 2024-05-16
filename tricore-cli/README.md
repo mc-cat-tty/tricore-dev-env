@@ -8,9 +8,9 @@ Make sure to be in the top-level directory of a project (i.e. a folder with some
 
 Then, run this to build the project:
 ```bash
-tricorecli build .
+tricorecli build -v SRCDIR
 # OR
-python3 -m tricorecli build .
+python3 -m tricorecli build -v SRCDIR
 ```
 
 If the build is successful, a file _.hex_ is generated inside the _build_ directory of the project.
