@@ -1,17 +1,8 @@
 import argparse, os
 from typing import Callable
-from arglists import *
-
-import docker
-from docker.errors import DockerException
-from docker import DockerClient
-from docker.types import Mount
-from operator import attrgetter
-from itertools import chain
-
-import time
-
-IMAGE: str = 'francescomecatti/tricore-dev-env:1.0'
+from args import *
+from containers import *
+from utils import *
 
 def container_startup(f) -> Callable:
   def inner(*args, **kwargs):
@@ -19,7 +10,7 @@ def container_startup(f) -> Callable:
       client = docker.from_env()
     except DockerException:
       print('Docker engine not found. Make sure to have a running Docker engine!')
-      exit(1)
+      exit(ExitCode.ENGINE_NOT_STARTED)
 
     installed_images = chain.from_iterable(
       map(
@@ -38,54 +29,36 @@ def container_startup(f) -> Callable:
   return inner
 
 
-@container_startup
-def build(client: DockerClient, args: BuildHanderArgs) -> None:
-  abs_path = args.folder if os.path.isabs(args.folder) else os.path.join(os.getcwd(), args.folder)
+def build(args: BuildHanderArgs) -> None:
+  abs_path = os.path.abspath(args.folder)
   
-  if not os.path.isfile(os.path.join(abs_path, 'CMakeLists.txt')):
-    print(f'Missing CMakeLists.txt in {abs_path}')
-    exit(2)
-  
-  if not os.path.isfile(os.path.join(abs_path, 'tricore_toolchain.cmake')):
-    print(f'Missing tricore_toolchain.cmake in {abs_path}')
-    exit(3)
+  check_file_or_exit(
+    os.path.join(abs_path, 'CMakeLists.txt'),
+    f'Missing CMakeLists.txt in {abs_path}',
+    ExitCode.CMAKE_LISTS_NOT_FOUND
+  )
 
+  check_file_or_exit(
+    os.path.join(abs_path, 'tricore_toolchain.cmake'),
+    f'Missing tricore_toolchain.cmake in {abs_path}',
+    ExitCode.CMAKE_TOOLCHAIN_NOT_FOUND
+  )
+  
   build_path = os.path.join(abs_path, 'build')
   if not os.path.isdir(build_path):
     os.makedirs(build_path)
 
-  SRC_DIR: str = '/home/src'
   CPUS: int = int(os.cpu_count()*1.5) if os.cpu_count() else 2
-  src_folder = Mount(SRC_DIR, abs_path, type='bind')
 
-  print(f'Building source from {args.folder}')
+  with BuildDisposableContainer(abs_path) as build_container:
+    print(f'Building source with {CPUS} jobs from {abs_path}')
 
-  c = client.containers.run(
-    IMAGE,
-    detach=True,
-    stdin_open=True,  # To keep the container alive
-    mounts=[src_folder],
-    working_dir=SRC_DIR
-  )
-  r = c.exec_run('cmake -B build --toolchain tricore_toolchain.cmake', stream=True)
-  
-  for s in r:
-    if s:
-      for l in s:
-        if (l): print(l.decode('utf-8'), end='')
-
-  print(f"Building with {CPUS} jobs...")
-  
-  r = c.exec_run(f'cmake --build build --parallel {CPUS}', stream=True)
-  
-  for s in r:
-    if s:
-      for l in s:
-        if (l): print(l.decode('utf-8'))
-  
-  c.stop(timeout=1)
-  c.remove()
-
+    res = build_container.exec_run('cmake -B build --toolchain tricore_toolchain.cmake', stream=True)
+    print_stream(res)
+    
+    res = build_container.exec_run(f'cmake --build build --parallel {CPUS}', stream=True)
+    print_stream(res)
+    
 
 @container_startup
 def flash(client: DockerClient, args: FlashHandlerArgs) -> None:
