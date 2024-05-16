@@ -67,9 +67,22 @@ def build(client: DockerClient, args: BuildHanderArgs) -> None:
     mounts=[src_folder],
     working_dir=SRC_DIR
   )
-  c.exec_run('cmake -B build --toolchain tricore_toolchain.cmake')
+  r = c.exec_run('cmake -B build --toolchain tricore_toolchain.cmake', stream=True)
+  
+  for s in r:
+    if s:
+      for l in s:
+        if (l): print(l.decode('utf-8'), end='')
+
   print(f"Building with {CPUS} jobs...")
-  c.exec_run(f'cmake --build build --parallel {CPUS}')
+  
+  r = c.exec_run(f'cmake --build build --parallel {CPUS}', stream=True)
+  
+  for s in r:
+    if s:
+      for l in s:
+        if (l): print(l.decode('utf-8'))
+  
   c.stop(timeout=1)
   c.remove()
 
