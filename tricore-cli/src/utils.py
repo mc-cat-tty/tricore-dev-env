@@ -9,6 +9,26 @@ class ExitCode(IntEnum):
   CMAKE_LISTS_NOT_FOUND = auto()
   CMAKE_TOOLCHAIN_NOT_FOUND = auto()
 
+
+class GlobalConfiguration:
+  __instance = None
+
+  def __new__(cls, *args, **kwargs):
+    if not cls.__instance:
+      cls.__instance = super().__new__(cls, *args, **kwargs)
+      return cls.__instance
+
+    return cls.__instance
+
+  @property
+  def verbosity_level(self) -> int:
+    return self.__verbosity_level
+  
+  @verbosity_level.setter
+  def verbosity_level(self, vl: int) -> None:
+    self.__verbosity_level: int = vl
+
+
 def check_file_or_exit(file_path: str, error_msg: str = "", exit_code: int = 1):
   if os.path.isfile(file_path): return
   
@@ -16,6 +36,8 @@ def check_file_or_exit(file_path: str, error_msg: str = "", exit_code: int = 1):
   exit(exit_code)
 
 def print_stream(exec_result):
+  if GlobalConfiguration().verbosity_level < 1: return
+  
   for line in exec_result.output:
     print(line.decode('utf-8'), end='')
 

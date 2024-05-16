@@ -5,6 +5,8 @@ from utils import *
 
 
 def build(args: BuildHanderArgs) -> None:
+  GlobalConfiguration().verbosity_level = args.verbosity_level
+
   abs_path = os.path.abspath(args.folder)
   
   check_file_or_exit(
@@ -33,6 +35,8 @@ def build(args: BuildHanderArgs) -> None:
     
     res = build_container.exec_run(f'cmake --build build --parallel {CPUS}', stream=True)
     print_stream(res)
+  
+  print(f"Successfully built artifacts in {build_path}")
     
 
 def flash(args: FlashHandlerArgs) -> None:
