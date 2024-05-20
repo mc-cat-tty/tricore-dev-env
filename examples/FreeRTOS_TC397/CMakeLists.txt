@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.22)
-project(ProjectName LANGUAGES C)
+project(FreeRTOS_Test LANGUAGES C)
 
 # List all files and subdirectories in Libraries and Configurations folders
 file(GLOB_RECURSE libraries_headers LIST_DIRECTORIES true Libraries/*.h)
@@ -33,7 +33,7 @@ add_link_options(
 )
 
 file(GLOB_RECURSE source_dirs *.c)
-add_executable(ProjectName ${source_dirs})
+add_executable(FreeRTOS_Test ${source_dirs})
 
 include_directories(
   ${header_dirs}
@@ -41,7 +41,7 @@ include_directories(
 )
 
 add_custom_command(
-  TARGET ProjectName POST_BUILD
-  COMMAND tricore-elf-objcopy -O ihex ProjectName ProjectName.hex
+  TARGET FreeRTOS_Test POST_BUILD
+  COMMAND tricore-elf-objcopy -O ihex FreeRTOS_Test FreeRTOS_Test.hex
   COMMENT "Extracting HEX from ELF..."
 )
