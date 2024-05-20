@@ -1,0 +1,68 @@
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Atom.h", line 648: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Tom.h", line 569: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Can/Can/IfxCan_Can.c", line 625: warning (etoa:1824): explicit cast from 'ptr-to-volatile struct _Ifx_CAN' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Can/Std/IfxCan.c", line 376: warning (etoa:1824): explicit cast from 'ptr-to-volatile struct _Ifx_CAN_RXMSG' to 'ptr-to-ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Can/Std/IfxCan.c", line 864: warning (etoa:1824): explicit cast from 'ptr-to-volatile struct _Ifx_CAN_TXMSG' to 'ptr-to-ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Can/Std/IfxCan.c", line 881: warning (etoa:1824): explicit cast from 'ptr-to-volatile struct _Ifx_CAN_TXMSG' to 'ptr-to-ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Eray/Std/IfxEray.h", line 1425: warning (etoa:1824): explicit cast from 'ptr-to-volatile union $$107' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Eray/Std/IfxEray.h", line 1488: warning (etoa:1824): explicit cast from 'ptr-to-volatile union $$133' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Eray/Std/IfxEray.c", line 253: warning (etoa:1824): explicit cast from 'ptr-to-volatile union $$123' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Eray/Std/IfxEray.c", line 270: warning (etoa:1824): explicit cast from 'ptr-to-volatile union $$141' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Fce/Crc/IfxFce_Crc.c", line 97: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ptr-to-void' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Geth/Eth/IfxGeth_Eth.c", line 342: warning (etoa:1824): explicit cast from 'const ptr-to-volatile struct _Ifx_GETH' to 'void' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Geth/Eth/IfxGeth_Eth.c", line 613: warning (etoa:1824): explicit cast from 'ptr-to-volatile struct $$1519' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Geth/Eth/IfxGeth_Eth.c", line 614: warning (etoa:1824): explicit cast from 'ptr-to-volatile struct $$1519' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Geth/Eth/IfxGeth_Eth.c", line 655: warning (etoa:1824): explicit cast from 'ptr-to-volatile struct $$1521' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Geth/Eth/IfxGeth_Eth.c", line 716: warning (etoa:1824): explicit cast from 'ptr-to-volatile struct $$1521' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Tom.h", line 569: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Atom.h", line 648: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Atom.h", line 648: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Atom.c", line 372: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Psm.c", line 161: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ptr-to-ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Psm.c", line 170: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ptr-to-ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Psm.c", line 179: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ptr-to-ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Psm.c", line 188: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ptr-to-ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Psm.c", line 199: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ptr-to-ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Tom.h", line 569: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Atom.h", line 648: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Tom.h", line 569: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Atom.h", line 648: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Tom.h", line 569: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Atom.h", line 648: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Tom.h", line 569: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Atom.h", line 648: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Tom.h", line 569: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Atom.h", line 648: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Tom.h", line 569: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Tim.h", line 641: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Tim.h", line 641: warning (etoa:1824): explicit cast from 'ptr-to-volatile struct _Ifx_GTM_TIM_CH' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Tim.h", line 641: warning (etoa:1824): explicit cast from 'ptr-to-volatile struct _Ifx_GTM_TIM_CH' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Tim.h", line 615: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ptr-to-void' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Tim.h", line 616: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ptr-to-void' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Tim.h", line 641: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Tim.h", line 641: warning (etoa:1824): explicit cast from 'ptr-to-volatile struct _Ifx_GTM_TIM_CH' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Tim.h", line 641: warning (etoa:1824): explicit cast from 'ptr-to-volatile struct _Ifx_GTM_TIM_CH' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Atom.h", line 648: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Tom.h", line 569: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Atom.h", line 648: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Tom.h", line 569: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Atom.h", line 648: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Tom.h", line 569: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Atom.h", line 648: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Gtm/Std/IfxGtm_Tom.h", line 569: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Hssl/Hssl/IfxHssl_Hssl.c", line 371: warning (etoa:1824): explicit cast from 'ptr-to-volatile union $$93' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Hssl/Hssl/IfxHssl_Hssl.c", line 383: warning (etoa:1824): explicit cast from 'ptr-to-volatile union $$91' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Hssl/Hssl/IfxHssl_Hssl.c", line 396: warning (etoa:1824): explicit cast from 'ptr-to-volatile union $$91' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Hssl/Hssl/IfxHssl_Hssl.c", line 407: warning (etoa:1824): explicit cast from 'ptr-to-volatile union $$69' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Hssl/Hssl/IfxHssl_Hssl.c", line 418: warning (etoa:1824): explicit cast from 'ptr-to-volatile union $$91' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Hssl/Hssl/IfxHssl_Hssl.c", line 432: warning (etoa:1824): explicit cast from 'ptr-to-volatile union $$39' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Hssl/Hssl/IfxHssl_Hssl.c", line 446: warning (etoa:1824): explicit cast from 'ptr-to-volatile union $$39' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Hssl/Hssl/IfxHssl_Hssl.c", line 458: warning (etoa:1824): explicit cast from 'ptr-to-volatile union $$73' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Qspi/SpiMaster/IfxQspi_SpiMaster.c", line 318: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ptr-to-ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Qspi/SpiMaster/IfxQspi_SpiMaster.c", line 461: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Qspi/SpiMaster/IfxQspi_SpiMaster.c", line 483: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Qspi/SpiMaster/IfxQspi_SpiMaster.c", line 998: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ptr-to-void' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Qspi/SpiMaster/IfxQspi_SpiMaster.c", line 1288: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ptr-to-ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Qspi/SpiSlave/IfxQspi_SpiSlave.c", line 262: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Qspi/SpiSlave/IfxQspi_SpiSlave.c", line 280: warning (etoa:1824): explicit cast from 'ptr-to-volatile uint' to 'ulong' discards volatile qualifier
+"0_Src/BaseSw/iLLD/TC39xB/Tricore/Spu/Std/IfxSpu.c", line 182: warning (etoa:1824): explicit cast from 'ptr-to-volatile union $$95' to 'ptr-to-struct $$497' discards volatile qualifier
