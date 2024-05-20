@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.22)
-project(Blinky LANGUAGES C)
+project(ProjectName LANGUAGES C)
 
 # List all files and subdirectories in Libraries and Configurations folders
 file(GLOB_RECURSE libraries_headers LIST_DIRECTORIES true Libraries/*.h)
@@ -33,7 +33,7 @@ add_link_options(
 )
 
 file(GLOB_RECURSE source_dirs *.c)
-add_executable(Blinky ${source_dirs})
+add_executable(ProjectName ${source_dirs})
 
 include_directories(
   ${header_dirs}
@@ -41,7 +41,7 @@ include_directories(
 )
 
 add_custom_command(
-  TARGET Blinky POST_BUILD
-  COMMAND tricore-elf-objcopy -O ihex Blinky Blinky.hex
+  TARGET ProjectName POST_BUILD
+  COMMAND tricore-elf-objcopy -O ihex ProjectName ProjectName.hex
   COMMENT "Extracting HEX from ELF..."
 )
