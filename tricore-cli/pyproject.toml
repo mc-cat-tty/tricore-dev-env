@@ -1,10 +1,10 @@
 [project]
 name = "tricore-cli"
-version = "1.5"
+version = "1.6"
 authors = [{ name = "Francesco Mecatti" }]
 description = "A utility script for interacting with containerized TriCore development environment"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dependencies = ["docker>=7.0.0"]
 
 [project.urls]
