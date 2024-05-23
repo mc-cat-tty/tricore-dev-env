@@ -1,9 +1,10 @@
+from __future__ import annotations
 import docker
 import docker.errors
 from utils import *
 from docker.models.containers import Container
 from docker.errors import DockerException
-from docker import DockerClient
+from docker import DockerClient, APIClient
 from docker.types import Mount
 
 IMAGE: str = 'francescomecatti/tricore-dev-env:1.0'
@@ -14,19 +15,28 @@ class DisposableContainer:
     self._client: DockerClient | None = None
     self._container: Container | None = None
   
-  def __enter__(self):
+  def __enter__(self) -> DisposableContainer:
     try:
       self._client = docker.from_env()
     except DockerException:
       print('Docker engine not found. Make sure to have a running Docker engine!')
       exit(ExitCode.ENGINE_NOT_STARTED)
 
-    return self._container
+    return self
   
-  def __exit__(self, type, value, tb):
+  def __exit__(self, type, value, tb) -> None:
     assert self._container, "Invalid container"
     self._container.stop(timeout=1)
     self._container.remove()
+  
+  def run_async(self, cmd: str, stream_handler_callback) -> int:
+    if not self._container: raise RuntimeError("Container not initialized")
+
+    client = APIClient()
+    exec_handle = client.exec_create(self._container.id, cmd)
+    stream = client.exec_start(exec_handle, stream=True)
+    stream_handler_callback(stream)
+    return client.exec_inspect(exec_handle['Id']).get('ExitCode')
 
 
 class BuildDisposableContainer(DisposableContainer):
@@ -36,7 +46,7 @@ class BuildDisposableContainer(DisposableContainer):
     super().__init__(IMAGE)
     self.__folder = folder
   
-  def __enter__(self):
+  def __enter__(self) -> DisposableContainer:
     super().__enter__()
     assert self._client, "Invalid client"
 
@@ -56,5 +66,4 @@ class BuildDisposableContainer(DisposableContainer):
       working_dir = BuildDisposableContainer.SRC_DIR
     )
 
-    if not self._container: raise RuntimeError("sdfas") 
-    return self._container
+    return self

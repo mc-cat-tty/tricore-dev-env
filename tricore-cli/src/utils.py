@@ -35,10 +35,16 @@ def check_file_or_exit(file_path: str, error_msg: str = "", exit_code: int = 1):
   print(error_msg)
   exit(exit_code)
 
-def print_stream(exec_result):
-  if GlobalConfiguration().verbosity_level < 1: return
-  
-  for line in exec_result.output:
+def exit_if_error(exit_code: int, msg: str):
+  if exit_code == 0: return
+  print(msg)
+  exit(exit_code)
+
+def print_stream(exec_stream):
+  skip_print: bool = GlobalConfiguration().verbosity_level < 1
+
+  for line in exec_stream:
+    if skip_print: continue
     print(line.decode('utf-8'), end='')
 
 def print_pull_progress(stream: Generator):

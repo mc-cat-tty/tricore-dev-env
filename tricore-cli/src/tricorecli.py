@@ -30,17 +30,21 @@ def build(args: BuildHanderArgs) -> None:
   with BuildDisposableContainer(abs_path) as build_container:
     print(f'Building source with {CPUS} jobs from {abs_path}')
 
-    res = build_container.exec_run('cmake -B build --toolchain tricore_toolchain.cmake', stream=True)
-    print_stream(res)
+    exit_if_error(
+      build_container.run_async('cmake -B build --toolchain tricore_toolchain.cmake', print_stream),
+      "Failed makefiles generation."
+    )
     
-    res = build_container.exec_run(f'cmake --build build --parallel {CPUS}', stream=True)
-    print_stream(res)
+    exit_if_error(
+      build_container.run_async(f'cmake --build build --parallel {CPUS}', print_stream),
+      "Build failed."
+    )
   
-  print(f"Successfully built artifacts in {build_path}")
+  print(f"Successfully built artifacts in {build_path}.")
     
 
 def flash(args: FlashHandlerArgs) -> None:
-  raise NotImplementedError('Feature not implemented yet')
+  raise NotImplementedError('Feature not implemented yet.')
 
 
 def main() -> None:
