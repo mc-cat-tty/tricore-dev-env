@@ -7,3 +7,6 @@
 [submodule "build-toolchain/tricore-newlib-cygwin"]
 	path = build-toolchain/tricore-newlib-cygwin
 	url = https://github.com/EEESlab/tricore-newlib-cygwin
+[submodule "examples/FreeRTOS_TC397/Libraries/FreeRTOS"]
+	path = examples/FreeRTOS_TC397/Libraries/FreeRTOS
+	url = https://github.com/FreeRTOS/FreeRTOS-Kernel.git

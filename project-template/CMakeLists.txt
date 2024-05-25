@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.22)
 project(ProjectName LANGUAGES C)
 
 # List all files and subdirectories in Libraries and Configurations folders
-file(GLOB_RECURSE libraries_headers LIST_DIRECTORIES true Libraries/*.h)
 file(GLOB_RECURSE configurations_headers LIST_DIRECTORIES true Configurations/*.h)
+file(GLOB_RECURSE libraries_headers LIST_DIRECTORIES true Libraries/*.h)
 
 # Create a "set" (actually, a list without duplicates) of subdirs by stripping filenames
 set(header_dirs "")
