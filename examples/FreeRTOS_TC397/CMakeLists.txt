@@ -1,9 +1,20 @@
 cmake_minimum_required(VERSION 3.22)
 project(FreeRTOS_Test LANGUAGES C)
+include(FetchContent)
+# find_package(Git REQUIRED)
+
+# FetchContent_Declare(
+#   FreeRTOS_Kernel
+#   GIT_REPOSITORY https://github.com/FreeRTOS/FreeRTOS-Kernel.git
+#   GIT_TAG dbf70559b27d39c1fdb68dfb9a32140b6a6777a0
+#   TLS_VERIFY OFF
+# )
+
+# FetchContent_MakeAvailable(FreeRTOS_Kernel)
 
 # List all files and subdirectories in Libraries and Configurations folders
-file(GLOB_RECURSE libraries_headers LIST_DIRECTORIES true Libraries/*.h)
 file(GLOB_RECURSE configurations_headers LIST_DIRECTORIES true Configurations/*.h)
+file(GLOB_RECURSE libraries_headers LIST_DIRECTORIES true Libraries/*.h)
 
 # Create a "set" (actually, a list without duplicates) of subdirs by stripping filenames
 set(header_dirs "")
@@ -24,11 +35,13 @@ add_compile_options(
   -fdata-sections
   -ffunction-sections
   -mcpu=tc39xx
+  -mtc162
 )
 add_link_options(
   -nocrt0
   -Wl,--gc-sections
   -mcpu=tc39xx
+  -mtc162
   -T../Lcf_Gnuc_Tricore_Tc.lsl
 )
 
